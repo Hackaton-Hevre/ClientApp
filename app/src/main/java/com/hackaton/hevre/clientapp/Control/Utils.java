@@ -5,7 +5,7 @@ package com.hackaton.hevre.clientapp.Control;
  */
 public class Utils {
 
-    private static final String BASE_REST_SERVER = "http://10.0.0.8:5070";
+    private static final String BASE_REST_SERVER = "http://10.0.0.10:7800";
     private static final String USERS_SERVICE_ROUTE = BASE_REST_SERVER + "/users";
 
     public static String constructRestUrlForProfile(String userName) {

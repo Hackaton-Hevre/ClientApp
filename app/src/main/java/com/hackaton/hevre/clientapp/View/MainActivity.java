@@ -29,7 +29,6 @@ public class MainActivity extends ActionBarActivity {
                 mApi.getUserProfile("avichay", new GetResponseCallback() {
                     @Override
                     public void onDataReceived(String profile) {
-
                         Toast.makeText(getBaseContext(), "Received!" + profile, Toast.LENGTH_LONG).show();
                     }
                 });

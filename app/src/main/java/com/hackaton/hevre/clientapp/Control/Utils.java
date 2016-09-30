@@ -20,4 +20,8 @@ public class Utils {
     public static String serializeProfileAsString(String profile) {
         return profile;
     }
+
+    public static String constructRestUrlForLogin(String username, String password) {
+        return USERS_SERVICE_ROUTE + "/login/" + username + "/" + password;
+    }
 }

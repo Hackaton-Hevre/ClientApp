@@ -21,7 +21,40 @@
         android:id="@+id/sanityButton"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="74dp"/>
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/getLocationButton"
+        android:layout_toRightOf="@id/sanityButton"
+        android:layout_below="@+id/textView"
+        android:text="Get Loaction"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/distanceButton"
+        android:layout_toRightOf="@id/getLocationButton"
+        android:layout_below="@+id/textView"
+        android:text="Get distance"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/sanityButton"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/longitude"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/latitude"
+        android:layout_below="@+id/getLocationButton"
+        android:layout_alignLeft="@+id/getLocationButton"
+        android:layout_alignStart="@+id/getLocationButton"/>
 
 </RelativeLayout>

@@ -1,0 +1,20 @@
+package com.hackaton.hevre.clientapp.Service;
+
+/**
+ * Created by אביחי on 30/09/2016.
+ */
+
+
+/**
+ * Class definition for a callback to be invoked when the HTTP request
+ * representing the REST API Call completes.
+ */
+
+public abstract class RestTaskCallback{
+    /**
+     * Called when the HTTP request completes.
+     *
+     * @param result The result of the HTTP request.
+     */
+    public abstract void onTaskComplete(String result);
+}

@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 /**
  * An AsyncTask implementation for performing GETs on the Hypothetical REST APIs.
  */
-public class GetTask extends AsyncTask<String, String, String> {
+public class GetTask<T> extends AsyncTask<T, T, T> {
 
     private String mRestUrl;
     private RestTaskCallback mCallback;
@@ -58,8 +58,8 @@ public class GetTask extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
-        String response = null;
+    protected T doInBackground(T... params) {
+        T response = null;
         //Use HTTP Client APIs to make the call.
         //Return the HTTP Response body here.
         // create HttpClient
@@ -77,9 +77,9 @@ public class GetTask extends AsyncTask<String, String, String> {
 
             // convert inputstream to string
             if(inputStream != null)
-                response = convertInputStreamToString(inputStream);
+                response = (T) convertInputStreamToString(inputStream);
             else
-                response = "Did not work!";
+                response = (T) "Did not work!";
 
         } catch (Exception e) {
             Log.d("InputStream", e.getLocalizedMessage());
@@ -89,7 +89,7 @@ public class GetTask extends AsyncTask<String, String, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(T result) {
         mCallback.onTaskComplete(result);
         super.onPostExecute(result);
     }

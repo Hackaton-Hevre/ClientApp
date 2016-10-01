@@ -10,11 +10,11 @@ package com.hackaton.hevre.clientapp.Service;
  * representing the REST API Call completes.
  */
 
-public abstract class RestTaskCallback{
+public abstract class RestTaskCallback<T>{
     /**
      * Called when the HTTP request completes.
      *
      * @param result The result of the HTTP request.
      */
-    public abstract void onTaskComplete(String result);
+    public abstract void onTaskComplete(T result);
 }

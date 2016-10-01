@@ -39,22 +39,51 @@
         android:layout_below="@+id/textView"
         android:text="Get distance"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/sanityButton"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/longitude"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/latitude"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_below="@+id/getLocationButton"
-        android:layout_alignLeft="@+id/getLocationButton"
-        android:layout_alignStart="@+id/getLocationButton"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="111dp">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Enter your username"
+            android:ems="10"
+            android:id="@+id/username_text"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Enter your password"
+            android:ems="10"
+            android:id="@+id/password_text"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Connect"
+            android:id="@+id/Login_button"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Register"
+            android:id="@+id/Register_button"
+            android:layout_gravity="center_horizontal"
+            />
+    </LinearLayout>
+
+
+
+
 
 </RelativeLayout>

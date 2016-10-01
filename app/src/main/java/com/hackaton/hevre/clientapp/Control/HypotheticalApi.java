@@ -27,7 +27,7 @@ public class HypotheticalApi{
     public void getUserProfile(String userName, final GetResponseCallback callback){
 
         String restUrl = Utils.constructRestUrlForProfile(userName);
-        new GetTask(restUrl, new RestTaskCallback(){
+        new GetTask(restUrl, new RestTaskCallback<String>(){
             @Override
             public void onTaskComplete(String response){
                 String profile = Utils.parseResponseAsProfile(response);
@@ -39,11 +39,26 @@ public class HypotheticalApi{
     public void login(String username, String password, final GetResponseCallback callback)
     {
 
-        /*// 1. Create the api string
-        String restUrl = Utils.constructRestUrlForLogin(username, password);*/
+        // 1. Create the api string
+        String restUrl = Utils.constructRestUrlForLogin(username, password);
 
+        new PostTask(restUrl, "aaa", new RestTaskCallback<String>() {
+            @Override
+            public void onTaskComplete(String result) {
+                callback.onDataReceived(result);
+            }
+        }).execute();
     }
+     public void Register (String username, String email, String password, String repassword, final GetResponseCallback callback){
+         String restUrl = Utils.constructRestUrlForRegister(username, password, email);
 
+         new PostTask(restUrl, "aaa", new RestTaskCallback<String>() {
+             @Override
+             public void onTaskComplete(String result) {
+                 callback.onDataReceived(result);
+             }
+         }).execute();
+     }
     /**
      * Submit a user profile to the server.
      * @param profile The profile to submit
@@ -52,7 +67,7 @@ public class HypotheticalApi{
     public void postUserProfile(String profile, final PostCallback callback){
         String restUrl = Utils.constructRestUrlForProfile(profile);
         String requestBody = Utils.serializeProfileAsString(profile);
-        new PostTask(restUrl, requestBody, new RestTaskCallback(){
+        new PostTask(restUrl, requestBody, new RestTaskCallback<String>(){
             public void onTaskComplete(String response){
                 callback.onPostSuccess();
             }

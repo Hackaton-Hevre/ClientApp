@@ -1,4 +1,4 @@
-package com.hackaton.hevre.clientapp.Control;
+package com.hackaton.hevre.clientapp.Control.RESTService;
 
 /**
  * Created by אביחי on 30/09/2016.

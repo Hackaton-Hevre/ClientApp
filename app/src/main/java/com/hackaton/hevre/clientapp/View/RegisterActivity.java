@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hackaton.hevre.clientapp.Control.GetResponseCallback;
-import com.hackaton.hevre.clientapp.Control.HypotheticalApi;
+import com.hackaton.hevre.clientapp.Control.RESTService.GetResponseCallback;
+import com.hackaton.hevre.clientapp.Control.RESTService.HypotheticalApi;
 import com.hackaton.hevre.clientapp.Control.LOGIN_STATUS;
 import com.hackaton.hevre.clientapp.R;
 

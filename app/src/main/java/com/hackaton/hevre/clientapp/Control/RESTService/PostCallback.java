@@ -1,4 +1,4 @@
-package com.hackaton.hevre.clientapp.Control;
+package com.hackaton.hevre.clientapp.Control.RESTService;
 
 /**
  * Created by אביחי on 30/09/2016.
@@ -17,6 +17,6 @@ public abstract class PostCallback{
      * Called when a POST success response is received. <br/>
      * This method is guaranteed to execute on the UI thread.
      */
-    public abstract void onPostSuccess();
+    public abstract void onPostSuccess(String result);
 
 }

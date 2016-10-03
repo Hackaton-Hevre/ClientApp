@@ -1,4 +1,4 @@
-package com.hackaton.hevre.clientapp.Service;
+package com.hackaton.hevre.clientapp.Communication;
 
 /**
  * Created by אביחי on 30/09/2016.
@@ -9,7 +9,7 @@ import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
@@ -17,26 +17,23 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /**
- * An AsyncTask implementation for performing POSTs on the Hypothetical REST APIs.
+ * An AsyncTask implementation for performing GETs on the Hypothetical REST APIs.
  */
-public class PostTask<T> extends AsyncTask<T, T, T> {
+public class GetTask<T> extends AsyncTask<T, T, T> {
+
     private String mRestUrl;
     private RestTaskCallback mCallback;
-    private String mRequestBody;
 
     /**
-     * Creates a new instance of PostTask with the specified URL, callback, and
-     * request body.
+     * Creates a new instance of GetTask with the specified URL and callback.
      *
      * @param restUrl The URL for the REST API.
      * @param callback The callback to be invoked when the HTTP request
      *            completes.
-     * @param requestBody The body of the POST request.
      *
      */
-    public PostTask(String restUrl, String requestBody, RestTaskCallback callback){
+    public GetTask(String restUrl, RestTaskCallback callback){
         this.mRestUrl = restUrl;
-        this.mRequestBody = requestBody;
         this.mCallback = callback;
     }
 
@@ -61,9 +58,7 @@ public class PostTask<T> extends AsyncTask<T, T, T> {
     }
 
     @Override
-    protected T doInBackground(T... arg0) {
-        //Use HTTP client API's to do the POST
-        //Return response.
+    protected T doInBackground(T... params) {
         T response = null;
         //Use HTTP Client APIs to make the call.
         //Return the HTTP Response body here.
@@ -72,11 +67,10 @@ public class PostTask<T> extends AsyncTask<T, T, T> {
         try {
 
             // create HttpClient
-            HttpClient httpClientlient = new DefaultHttpClient();
+            HttpClient httpclient = new DefaultHttpClient();
 
-            HttpPost post = new HttpPost(this.mRestUrl);
-
-            HttpResponse httpResponse = httpClientlient.execute(post);
+            // make GET request to the given URL
+            HttpResponse httpResponse = httpclient.execute(new HttpGet(this.mRestUrl));
 
             // receive response as inputStream
             inputStream = httpResponse.getEntity().getContent();

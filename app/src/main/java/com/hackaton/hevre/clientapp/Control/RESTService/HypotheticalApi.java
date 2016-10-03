@@ -1,12 +1,13 @@
-package com.hackaton.hevre.clientapp.Control;
+package com.hackaton.hevre.clientapp.Control.RESTService;
 
 /**
  * Created by אביחי on 30/09/2016.
  */
 
-import com.hackaton.hevre.clientapp.Service.GetTask;
-import com.hackaton.hevre.clientapp.Service.PostTask;
-import com.hackaton.hevre.clientapp.Service.RestTaskCallback;
+import com.hackaton.hevre.clientapp.Communication.GetTask;
+import com.hackaton.hevre.clientapp.Communication.PostTask;
+import com.hackaton.hevre.clientapp.Communication.RestTaskCallback;
+import com.hackaton.hevre.clientapp.Control.Utils;
 
 /**
  * Entry point into the API.
@@ -69,7 +70,7 @@ public class HypotheticalApi{
         String requestBody = Utils.serializeProfileAsString(profile);
         new PostTask(restUrl, requestBody, new RestTaskCallback<String>(){
             public void onTaskComplete(String response){
-                callback.onPostSuccess();
+                callback.onPostSuccess("");
             }
         }).execute();
     }
@@ -85,6 +86,32 @@ public class HypotheticalApi{
         float dist = (float) (earthRadius * c);
 
         return dist;
+    }
+
+    public void findProduct(String prod, final GetResponseCallback callback) {
+        String restUrl = Utils.constructRestUrlForFindProduct(prod);
+
+
+        new GetTask(restUrl, new RestTaskCallback<String>(){
+            @Override
+            public void onTaskComplete(String response){
+                callback.onDataReceived(response);
+            }
+        }).execute();
+    }
+
+    public void saveReminder(String userName, String product, final PostCallback postCallback) {
+
+        String restUrl = Utils.constructRestUrlForSaveReminder(userName, product);
+
+        String requestBody = Utils.serializeProfileAsString(userName + "_" + product);
+        new PostTask(restUrl, requestBody, new RestTaskCallback<String>(){
+            public void onTaskComplete(String response){
+                String result = "";
+                postCallback.onPostSuccess(result);
+            }
+        }).execute();
+
     }
 }
 

@@ -1,4 +1,4 @@
-package com.hackaton.hevre.clientapp.Service;
+package com.hackaton.hevre.clientapp.Communication;
 
 /**
  * Created by אביחי on 30/09/2016.

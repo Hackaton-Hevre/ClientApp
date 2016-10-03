@@ -13,9 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hackaton.hevre.clientapp.Control.GetResponseCallback;
-import com.hackaton.hevre.clientapp.Control.HypotheticalApi;
 import com.hackaton.hevre.clientapp.Control.LOGIN_STATUS;
+import com.hackaton.hevre.clientapp.Control.RESTService.GetResponseCallback;
+import com.hackaton.hevre.clientapp.Control.RESTService.HypotheticalApi;
 import com.hackaton.hevre.clientapp.R;
 
 
@@ -66,13 +66,20 @@ public class MainActivity extends ActionBarActivity {
         mGetLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, mLocationListener);
-                Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                double latitude=0;
-                double longitude=0;
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-                Toast.makeText(getBaseContext(), "Your location is : " + latitude + ", " + longitude, Toast.LENGTH_LONG).show();
+                try
+                {
+                    mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000L,500.0f, mLocationListener);
+                    Location location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    double latitude=0;
+                    double longitude=0;
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                    Toast.makeText(getBaseContext(), "Your location is : " + latitude + ", " + longitude, Toast.LENGTH_LONG).show();
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(getBaseContext(), "Please open your GPS", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -97,8 +104,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // todo : implement
-                String username = ((TextView) findViewById(R.id.username_text)).getText().toString();
-                String password = ((TextView) findViewById(R.id.password_text)).getText().toString();
+                final String username = ((TextView) findViewById(R.id.username_text)).getText().toString();
+                final String password = ((TextView) findViewById(R.id.password_text)).getText().toString();
 
                 if (!checkLoginInput(username, password))
                 {
@@ -125,7 +132,11 @@ public class MainActivity extends ActionBarActivity {
                                     case LOGIN_STATUS.SUCCESS:
                                         // todo : save credentials
                                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                                        Bundle b = new Bundle();
+                                        b.putString("user", username); //Your id
+                                        intent.putExtras(b); //Put your id to your next Intent
                                         startActivity(intent);
+                                        finish();
                                         break;
                                     default:
                                         break;
@@ -164,7 +175,7 @@ public class MainActivity extends ActionBarActivity {
                 try
                 {
                     mLocation = location;
-                    int maxDist = 250;
+                    int maxDist = 1;
                     if (mApi.distFrom(mLocation.getLatitude(), mLocation.getLongitude(), mAmitsHouse.getLatitude(), mAmitsHouse.getLongitude()) < maxDist)
                     {
                         Toast.makeText(getBaseContext(), "You are now less than " + maxDist + " from Amit's house!!!", Toast.LENGTH_LONG).show();

@@ -31,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
     private LocationManager mLocationManager;
     private Location mLocation;
     private Location mAmitsHouse;
-
+// ran hahomo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
